@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul,li{
+				list-style: none;
+			}
+			.wrap{
+				width: 470px;
+				height: 150px;
+				border: 1px solid #000000;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			ul{
+				position: absolute;
+				width: 2350px;
+				height: 150px;
+			}
+			ul li{
+				float: left;
+			}
+			ol{
+				position: absolute;
+				top: 120px;
+				right: 20px;
+			}
+			ol li{
+				width: 20px;
+				height: 20px;
+				border: 1px solid #000000;
+				text-align: center;
+				line-height: 20px;
+				float: left;
+				margin-right: 2px;
+				background-color: rgba(0,0,0,0.5);
+			}
+			.active{
+				background-color: #DAD55E;
+				color: #FFFFFF;
+			}
+		</style>
+		<script src="http://libs.baidu.com/jquery/1.9.1/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+//			$(function(){
+//				var $UlLi=$('ul li');
+//				var $OlLi=$('ol li');
+//				var num=0;
+//				var Len=$OlLi.length;
+//				var timer=null;
+//				
+//				
+//				
+//				$OlLi.each(function(i){
+//					$(this).hover(function(){
+//						clearInterval(timer);
+//						num=i;
+//						ChangeTo(i);
+//					},function(){
+//						clock();
+//					});
+//				});
+//				
+//				function clock(){
+//					timer=setInterval(function(){
+//						
+//						if(num<Len-1){
+//							num++;
+//						}else{
+//							num=0
+//						}
+//						ChangeTo(num);
+//					},2500)
+//				};
+//				clock();
+//				
+//				function ChangeTo(num){
+//					$('ul').stop().animate({
+//						left:"-"+num*470+"px"
+//					},1000)
+//					$OlLi.eq(num).addClass('active').siblings().removeClass('active');
+//				};	
+//			})
+			$(function(){
+				var $OlLi=$('ol li');
+				var $UlLi=$('ul li');
+				var timer=null;
+				var num=0;
+				var Len=$UlLi.length;
+				
+				
+				$OlLi.each(function(index){
+					$(this).hover(function(){
+						
+						clearInterval(timer);
+						ChangeTo(index);
+						
+					},function(){
+						clock();
+					});
+				})
+				
+				
+				//自动跳转函数
+				function clock(){
+					timer=setInterval(function(){
+						if (num<Len-1) {
+							num++;
+						} else{
+							num=0;
+						}
+						ChangeTo(num);
+					},2000);
+				}
+				clock();
+				
+				//跳转函数
+				function ChangeTo(num){
+					$('ul').stop().animate({
+						left:"-"+num*470+"px"
+					},500)
+					$OlLi.eq(num).addClass('active').siblings().removeClass('active');
+				}
+				
+			});
+			
+			
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul>
+				<li><img src="img/1.jpg"/></li>
+				<li><img src="img/2.jpg"/></li>
+				<li><img src="img/3.jpg"/></li>
+				<li><img src="img/4.jpg"/></li>
+				<li><img src="img/5.jpg"/></li>
+			</ul>
+			<ol>
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ol>
+		</div>
+	</body>
+</html>
